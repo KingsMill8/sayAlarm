@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=SayAlarm
 Comment=Set alarms with notes — Ryoku notifies you and speaks the note aloud
-Exec=python3 /home/fred/Projects/sayalarm/sayalarm.py
+Exec=python3 @@SAYALARM_DIR@@/sayalarm.py
 Icon=appointment-soon
 Terminal=false
 Type=Application

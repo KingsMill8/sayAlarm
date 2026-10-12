@@ -10,9 +10,33 @@ Always exits 0; prints {"none": true} on any failure so the widget
 keeps its last good values.
 """
 import json
+import os
 import sys
 
-sys.path.insert(0, "/home/fred/Projects/sayalarm")
+
+def find_app_dir() -> str | None:
+    """Locate the SayAlarm app checkout on any machine."""
+    candidates = []
+    env = os.environ.get("SAYALARM_DIR")
+    if env:
+        candidates.append(env)
+    home = os.path.expanduser("~")
+    candidates += [
+        os.path.join(home, "Projects", "sayalarm"),
+        os.path.join(home, "sayalarm"),
+        os.path.join(home, "sayAlarm"),
+        os.path.join(home, "Projects", "sayAlarm"),
+    ]
+    for cand in candidates:
+        if os.path.isfile(os.path.join(cand, "sayalarm.py")) and \
+                os.path.isfile(os.path.join(cand, "alarm_lib.py")):
+            return cand
+    return None
+
+
+APP_DIR = find_app_dir()
+if APP_DIR:
+    sys.path.insert(0, APP_DIR)
 
 from datetime import datetime
 

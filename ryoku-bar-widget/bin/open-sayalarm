@@ -1,4 +1,18 @@
 #!/usr/bin/env bash
 # Open the SayAlarm desktop app. Run only from the widget panel's
-# explicit "Open SayAlarm" click.
-exec python3 /home/fred/Projects/sayalarm/sayalarm.py
+# explicit "Open SayAlarm" click. Finds the app checkout on any machine
+# (override with SAYALARM_DIR).
+dirs=(
+  "${SAYALARM_DIR:-}"
+  "$HOME/Projects/sayalarm"
+  "$HOME/sayalarm"
+  "$HOME/sayAlarm"
+  "$HOME/Projects/sayAlarm"
+)
+for d in "${dirs[@]}"; do
+  if [ -n "$d" ] && [ -f "$d/sayalarm.py" ]; then
+    exec python3 "$d/sayalarm.py"
+  fi
+done
+echo "SayAlarm app not found (tried: ${dirs[*]}). Clone it and/or set SAYALARM_DIR." >&2
+exit 1
