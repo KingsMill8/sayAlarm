@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Open the SayAlarm desktop app. Run only from the widget panel's
+# explicit "Open SayAlarm" click.
+exec python3 /home/fred/Projects/sayalarm/sayalarm.py

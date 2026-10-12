@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=SayAlarm
+Comment=Set alarms with notes — Ryoku notifies you and speaks the note aloud
+Exec=python3 /home/fred/Projects/sayalarm/sayalarm.py
+Icon=appointment-soon
+Terminal=false
+Type=Application
+Categories=Utility;Clock;
+StartupWMClass=sayalarm

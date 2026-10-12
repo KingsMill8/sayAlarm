@@ -1,3 +1,7 @@
+__pycache__/
+*.pyc
+assets/beat_frames/
+
 *.tar
 *.tar.*
 *.jar

@@ -1,0 +1,51 @@
+{
+  "id": "sayalarm",
+  "name": "SayAlarm",
+  "version": "1.0.0",
+  "author": "Fred <fred@localhost>",
+  "description": "Next SayAlarm on the bar: time, note and live countdown with a quick-open panel.",
+  "license": "MIT",
+  "official": false,
+  "hosts": [
+    "topbarGlyph"
+  ],
+  "entryPoints": {
+    "main": "service/Main.qml",
+    "content": "content/Widget.qml",
+    "panel": "content/Panel.qml"
+  },
+  "panel": {
+    "width": 340
+  },
+  "files": [
+    "bin/next-alarm",
+    "bin/open-sayalarm",
+    "assets/preview-widget.png"
+  ],
+  "capabilities": {
+    "densities": [
+      "glyph",
+      "compact"
+    ]
+  },
+  "defaults": {
+    "host": "topbarGlyph",
+    "label": "SayAlarm"
+  },
+  "dependencies": {
+    "commands": [
+      "python3"
+    ]
+  },
+  "metadata": {
+    "settings": [
+      {
+        "key": "showCountdown",
+        "type": "toggle",
+        "label": "Show countdown next to the time",
+        "group": "SayAlarm",
+        "default": true
+      }
+    ]
+  }
+}

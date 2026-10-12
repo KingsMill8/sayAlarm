@@ -1,0 +1,48 @@
+#!/usr/bin/env python3
+"""Print the next SayAlarm as one JSON line for the Ryoku bar widget.
+
+Reads ~/.local/share/sayalarm/alarms.json (via the app's own alarm_lib)
+and prints either:
+  {"time": "07:30", "note": "Gym", "when": "in 3h 12m"}
+or:
+  {"none": true}
+Always exits 0; prints {"none": true} on any failure so the widget
+keeps its last good values.
+"""
+import json
+import sys
+
+sys.path.insert(0, "/home/fred/Projects/sayalarm")
+
+from datetime import datetime
+
+
+def main() -> None:
+    try:
+        import alarm_lib as lib
+    except ImportError:
+        print(json.dumps({"none": True}))
+        return
+    try:
+        now = datetime.now()
+        best = None
+        for alarm in lib.load_alarms():
+            ahead = lib.next_fire_in_minutes(alarm, now)
+            if ahead is None:
+                continue
+            if best is None or ahead < best[0]:
+                best = (ahead, alarm)
+        if best is None:
+            print(json.dumps({"none": True}))
+            return
+        ahead, alarm = best
+        print(json.dumps({
+            "time": f"{alarm['hour']:02d}:{alarm['min']:02d}",
+            "note": (alarm.get("note") or "Alarm").strip(),
+            "when": lib.fmt_countdown(ahead),
+        }))
+    except Exception:
+        print(json.dumps({"none": True}))
+
+
+main()
