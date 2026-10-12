@@ -10,9 +10,11 @@ Works even when the app is closed: a systemd user service
 ## Install
 
 ```bash
-# deps (Arch): espeak-ng python-gobject gtk4 libadwaita mpv ffmpeg
-cd /path/to/your/sayalarm/clone
-python3 sayalarm.py   # the app
+# 1. deps (Arch): espeak-ng python-gobject gtk4 libadwaita mpv ffmpeg
+#    Debian/Ubuntu: python3-gi gir1.2-gtk-4.0 gir1.2-adw-1 libnotify-bin espeak-ng mpv ffmpeg
+# 2. download + install:
+git clone https://github.com/KingsMill8/sayAlarm.git
+cd sayAlarm
 bash install.sh       # launcher + always-on service
 ```
 
