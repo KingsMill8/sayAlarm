@@ -182,7 +182,7 @@ def daemon_loop() -> None:
                     alarm["sunrise_done"] = now.strftime("%Y-%m-%d")
                     try:
                         subprocess.Popen(
-                            ["python3", APP_PATH, "--sunrise", alarm["id"]],
+                            [sys.executable, APP_PATH, "--sunrise", alarm["id"]],
                             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
                     except (FileNotFoundError, OSError):
                         pass
@@ -915,7 +915,7 @@ if GUI_OK:
 
         def _on_pomodoro(self, _btn):
             try:
-                subprocess.Popen(["python3", APP_PATH, "--pomodoro"],
+                subprocess.Popen([sys.executable, APP_PATH, "--pomodoro"],
                                  stdout=subprocess.DEVNULL,
                                  stderr=subprocess.DEVNULL)
             except (FileNotFoundError, OSError):

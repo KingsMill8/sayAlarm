@@ -11,6 +11,8 @@ Works even when the app is closed: a systemd user service
 
 ```bash
 # deps (Arch): espeak-ng python-gobject gtk4 libadwaita mpv ffmpeg
+cd /path/to/your/sayalarm/clone
+python3 sayalarm.py   # the app
 bash install.sh       # launcher + always-on service
 ```
 
@@ -56,12 +58,8 @@ deleting `assets/beat_frames/` — frames re-extract on next launch.
 
 ## Run
 
-```bash
-python3 ~/Projects/sayalarm/sayalarm.py   # the app
-bash ~/Projects/sayalarm/install.sh       # launcher + always-on service
-```
-
-Or press Super+Space → **SayAlarm**.
+After installing, press Super+Space → **SayAlarm**
+(or `python3 sayalarm.py` from your clone).
 
 ## Files
 

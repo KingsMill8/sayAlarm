@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import subprocess
+import sys
 import threading
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -616,13 +617,13 @@ def fire_alarm(alarm: dict, app_path: str, via_snooze: bool = False) -> None:
         speak(spoken, times=3)
     # Continuous ringer loop (stops on dismiss/snooze/cutoff).
     try:
-        subprocess.Popen(["python3", app_path, "--ring", alarm["id"]],
+        subprocess.Popen([sys.executable, app_path, "--ring", alarm["id"]],
                           stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     except (FileNotFoundError, OSError):
         play_sound(custom=alarm.get("sound"))  # fallback: short ring
     # Popup window so the note is unmissable in Ryoku/Hyprland.
     try:
-        subprocess.Popen(["python3", app_path, "--popup", alarm["id"]],
+        subprocess.Popen([sys.executable, app_path, "--popup", alarm["id"]],
                           stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     except (FileNotFoundError, OSError):
         pass
